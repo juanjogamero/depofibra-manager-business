@@ -1,149 +1,127 @@
 <div align="center">
-  <img src="docs/depofibra-banner.svg" width="100%" alt="Depofibra — Aplicación de gestión empresarial con Flutter y Firebase"/>
-
-  <br/>
-
-  <img src="https://img.shields.io/badge/Flutter-Dart-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter y Dart"/>
-  <img src="https://img.shields.io/badge/Firebase-Authentication-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Firebase Auth"/>
-  <img src="https://img.shields.io/badge/Firestore-Real--time-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Cloud Firestore"/>
-  <img src="https://img.shields.io/badge/Status-Prototype-64748b?style=flat-square" alt="Prototipo"/>
-
+  <img src="docs/depofibra-banner.svg" width="100%" alt="Depofibra Manager — plataforma de gestión empresarial" />
   <br/><br/>
-
-  **Aplicación multiplataforma para centralizar la gestión de clientes, productos y pedidos de Depofibra.**
-
-  [Web corporativa actual](https://depofibra.com/) · [Repositorio de la web](https://github.com/juanjogamero/website-depofibra)
-
+  <img src="https://img.shields.io/badge/Flutter-Dart-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/Firebase-Auth_%26_Firestore-FFCA28?style=flat-square&logo=firebase&logoColor=111" alt="Firebase"/>
+  <img src="https://img.shields.io/badge/Live_Demo-HTML_CSS_JavaScript-126AA3?style=flat-square" alt="Demo HTML JavaScript"/>
+  <br/><br/>
+  <strong>Depofibra Manager</strong><br/>
+  <sub>Gestión comercial: clientes, catálogo y seguimiento de pedidos</sub>
 </div>
 
 ---
 
+## Explora la aplicación
+
+**[Abrir demo interactiva de GitHub Pages](https://juanjogamero.github.io/depofibra/)** · [Ver archivos de la demo](docs/index.html) · [Sitio oficial de Depofibra](https://depofibra.com/)
+
+> [!IMPORTANT]
+> **Demo pública con datos ficticios.** La web de demostración es una aplicación estática independiente de Flutter y Firebase. Puedes gestionar registros de ejemplo y tus cambios se guardan únicamente en el almacenamiento de tu navegador (localStorage). No tiene login real, usuarios compartidos, conexión a producción ni acceso a datos de clientes de Depofibra.
+>
+> El enlace GitHub Pages funcionará cuando se active la publicación en **Settings → Pages → Build and deployment → Source: GitHub Actions**. Si cambias el nombre del repositorio, la ruta de la demo cambiará en consecuencia.
+
 ## El proyecto
 
-**Depofibra Gestión Integral** es una aplicación de gestión empresarial construida con **Flutter y Dart** y conectada a **Firebase Authentication y Cloud Firestore**. Su finalidad es reunir en una única interfaz tres áreas habituales de una empresa comercial: clientes, catálogo de productos y seguimiento básico de pedidos.
+Depofibra Manager reúne dos implementaciones complementarias que muestran el desarrollo de un producto de gestión empresarial:
 
-Este repositorio contiene la **aplicación de gestión**, no el código fuente de la web pública de Depofibra. Se presenta como proyecto de desarrollo de software; no se declara como sistema listo para producción.
+| Implementación | Tecnología | Finalidad |
+|---|---|---|
+| **Aplicación de gestión** | Flutter, Dart, Firebase Authentication y Cloud Firestore | Código de la app con autenticación Google, pantallas y persistencia en Firestore |
+| **Demo interactiva** | HTML, CSS y JavaScript sin framework | Showcase navegable en GitHub Pages, sin credenciales ni backend |
 
-## Funcionalidades implementadas
+La aplicación Flutter es un **prototipo en desarrollo**, no una solución de producción auditada. La demo permite explorar las principales experiencias de usuario sin configuración previa.
+
+## Módulos
 
 <table>
 <tr>
-<td width="33%" valign="top">
-<h3>01 / Clientes</h3>
-Registro, consulta, edición y eliminación de clientes. Almacena nombre, correo electrónico y teléfono.
-</td>
-<td width="33%" valign="top">
-<h3>02 / Productos</h3>
-Gestión de artículos con nombre, categoría, capacidad en litros y precio.
-</td>
-<td width="34%" valign="top">
-<h3>03 / Pedidos</h3>
-Pedidos vinculados a un cliente y a un producto, con fecha y estados Pendiente, En Proceso y Entregado.
-</td>
+<td width="33%" valign="top"><h3>Clientes</h3>Altas, búsquedas, edición, eliminación y datos de contacto.</td>
+<td width="33%" valign="top"><h3>Productos</h3>Gestión de artículos, categorías, capacidades y precios orientativos.</td>
+<td width="34%" valign="top"><h3>Pedidos</h3>Asociación a clientes y productos, fecha, estado y seguimiento.</td>
 </tr>
 </table>
 
-**Acceso:** inicio de sesión con Google mediante Firebase Authentication y cambio automático entre la pantalla de login y la pantalla principal en función de la sesión.
+### Lo que puedes probar en la demo
 
-**Datos:** lectura en tiempo real y operaciones CRUD mediante Cloud Firestore.
+- Dashboard con métricas, valor agregado de pedidos y gráficos basados en los registros.
+- Buscadores independientes por módulo.
+- Operaciones de **crear, editar y eliminar** datos de ejemplo.
+- Estados de pedido: **Pendiente**, **En Proceso** y **Entregado**.
+- Validación de formularios y prevención de borrado de clientes o productos con pedidos asociados.
+- Persistencia en el navegador y botón **Reiniciar datos** para recuperar la demo original.
+- Interfaz responsive adaptada a escritorio, tablet y móvil.
 
-> [!NOTE]
-> El proyecto implementa la estructura básica de gestión. No consta en el repositorio un sistema completo de roles, contabilidad, facturación o control granular de permisos. Esas capacidades no deben darse por implementadas.
-
-## Tecnologías
-
-| Capa | Tecnología | Uso |
-| :-- | :-- | :-- |
-| Interfaz | Flutter · Dart · Material 3 | Pantallas y componentes visuales |
-| Autenticación | Firebase Auth · Google Sign-In | Inicio y cierre de sesión |
-| Base de datos | Cloud Firestore | Colecciones y suscripciones a cambios |
-| Formato | intl | Presentación de fechas |
-| Calidad | flutter_test · flutter_lints | Pruebas de modelos y análisis estático |
-
-## Arquitectura
+## Arquitectura de la app Flutter
 
 ```text
 lib/
-├── main.dart                 # Inicialización de Firebase y navegación por sesión
+├── main.dart
 ├── models/
-│   ├── cliente.dart          # Entidad de cliente
-│   ├── producto.dart         # Entidad de producto
-│   └── pedido.dart           # Entidad de pedido
+│   ├── cliente.dart
+│   ├── producto.dart
+│   └── pedido.dart
 ├── screens/
-│   ├── login_screen.dart     # Autenticación
-│   ├── home_screen.dart      # Navegación de gestión
-│   ├── clientes_screen.dart  # CRUD de clientes
-│   ├── productos_screen.dart # CRUD de productos
-│   └── pedidos_screen.dart   # CRUD y estados de pedidos
+│   ├── login_screen.dart
+│   ├── home_screen.dart
+│   ├── clientes_screen.dart
+│   ├── productos_screen.dart
+│   └── pedidos_screen.dart
 ├── services/
-│   ├── auth_service.dart     # Firebase Auth / Google
-│   └── firestore_service.dart# Acceso a Firestore
+│   ├── auth_service.dart
+│   └── firestore_service.dart
 └── widgets/
     └── input_decorations.dart
 
+docs/
+├── depofibra-banner.svg
+└── index.html             # Demo estática autónoma
+.github/workflows/
+└── pages.yml              # Despliegue GitHub Pages
 test/
-└── widget_test.dart          # Pruebas de serialización de modelos
+└── widget_test.dart       # Pruebas de modelos
 ```
 
-### Flujo de la aplicación
+## Desarrollo local
 
-```text
-Inicio → Firebase.initializeApp()
-          ↓
-  Estado de autenticación
-     ├── Sin sesión → Login con Google
-     └── Con sesión → Panel principal
-                        ├── Clientes
-                        ├── Productos
-                        └── Pedidos
-                              ↓
-                        Cloud Firestore
-```
+### Demo (sin dependencias)
 
-Las entidades se transforman a mapas mediante `toMap()` y se reconstruyen mediante `fromMap()`. Los pedidos guardan referencias por ID a cliente y producto, además de la fecha y el estado.
-
-## Ejecutar en desarrollo
-
-### Requisitos
-
-- Flutter SDK compatible con el SDK Dart indicado en `pubspec.yaml` (`^3.10.7`).
-- Un proyecto Firebase propio con Authentication y Cloud Firestore habilitados.
-- Configuración específica de Firebase para la plataforma de ejecución.
-- Proveedor de acceso con Google configurado para las plataformas donde se pruebe.
+Abre `docs/index.html` en un navegador o sírvelo localmente:
 
 ```bash
-git clone https://github.com/juanjogamero/depofibra.git
-cd depofibra
+python -m http.server 8000 --directory docs
+```
+
+Visita `http://localhost:8000`. Funciona sin Firebase y utiliza información ficticia.
+
+### Aplicación Flutter (requiere Firebase)
+
+```bash
 flutter pub get
 flutter analyze
 flutter test
 flutter run
 ```
 
-> [!IMPORTANT]
-> **Firebase requiere configuración previa.** El `main.dart` actual utiliza `Firebase.initializeApp()` sin opciones explícitas. Para ejecutar la aplicación debes aportar los archivos/configuración de Firebase adecuados a tu plataforma, registrar las aplicaciones necesarias y configurar Google Sign-In. El repositorio, tal como está, no garantiza un arranque inmediato en todas las plataformas.
+Es necesario configurar un **proyecto Firebase propio** y Google Sign-In para las plataformas utilizadas. El arranque de Flutter y la integración Firebase no se han verificado en un entorno de ejecución durante la preparación de este repositorio.
 
-## Calidad y consideraciones antes de producción
+## Publicación en GitHub Pages
 
-El repositorio incluye pruebas básicas de serialización de `Cliente` y `Producto`, que sustituyen al test por defecto del contador de Flutter. No se afirma que haya sido ejecutada una compilación o un análisis de Flutter en CI.
+El workflow `pages.yml` publica automáticamente la carpeta `docs/` cuando hay cambios en `main`. Para activarlo una vez:
 
-Antes de utilizar datos empresariales reales, conviene:
+1. Abre **Settings → Pages**.
+2. En **Build and deployment**, selecciona **GitHub Actions**.
+3. Ejecuta o vuelve a ejecutar **Deploy interactive demo to GitHub Pages** desde **Actions**.
+4. Confirma la URL publicada en la sección de despliegues de GitHub.
 
-1. Configurar y probar **Firebase Security Rules** para limitar acceso y escrituras por usuario autorizado.
-2. Añadir **roles y permisos** y políticas de acceso a datos de clientes.
-3. Revisar validaciones, errores de red, confirmaciones de borrado y estados de carga.
-4. Implementar pruebas de interfaz e integración, además de un pipeline de CI.
-5. Comprobar dependencias, configuración multiplataforma y documentación de despliegue.
+**Nombre recomendado del repositorio:** `depofibra-business-manager`. El enlace pasará a ser `https://juanjogamero.github.io/depofibra-business-manager/` cuando se complete el cambio de nombre y se publique correctamente.
 
-**Privacidad:** evita almacenar datos personales reales en proyectos Firebase de prueba. La autenticación por sí sola no sustituye a las reglas de autorización de Firestore.
+## Seguridad y alcance
 
-## Estado del proyecto
-
-**Prototipo funcional en código / desarrollo.** Se incluyen navegación, CRUD, autenticación y servicios de datos; las integraciones deben configurarse y verificarse en un entorno de Firebase antes de considerar la aplicación operativa. No hay enlace de demostración público confirmado para este repositorio.
+- La demo pública **no envía** datos introducidos a ningún servidor. Utiliza únicamente `localStorage`, por lo que **no debes introducir información real o sensible**.
+- Para usar el proyecto Flutter con datos empresariales, antes hay que validar **Security Rules de Firestore, autorización por roles, manejo de errores y controles de privacidad**.
+- Los importes y productos iniciales de la demo son **ficticios y orientativos**, no constituyen tarifas u ofertas comerciales.
+- No se afirma que la versión Flutter esté desplegada, completamente terminada o auditada.
 
 ---
 
-<div align="center">
-  <strong>Desarrollado por <a href="https://github.com/juanjogamero">Juan José Gamero López</a></strong><br/>
-  <sub>Flutter · Firebase · Aplicaciones a medida para negocio</sub>
-</div>
+<div align="center">Desarrollado por <a href="https://github.com/juanjogamero">Juan José Gamero López</a> · <strong>Depofibra Manager</strong></div>
