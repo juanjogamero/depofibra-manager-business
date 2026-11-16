@@ -13,12 +13,12 @@
 
 ## Explora la aplicación
 
-**[Abrir demo interactiva de GitHub Pages](https://juanjogamero.github.io/depofibra/)** · [Ver archivos de la demo](docs/index.html) · [Sitio oficial de Depofibra](https://depofibra.com/)
+**[Abrir demo interactiva de GitHub Pages](https://juanjogamero.github.io/depofibra-manager-business/)** · [Ver archivos de la demo](docs/index.html) · [Sitio oficial de Depofibra](https://depofibra.com/)
 
 > [!IMPORTANT]
 > **Demo pública con datos ficticios.** La web de demostración es una aplicación estática independiente de Flutter y Firebase. Puedes gestionar registros de ejemplo y tus cambios se guardan únicamente en el almacenamiento de tu navegador (localStorage). No tiene login real, usuarios compartidos, conexión a producción ni acceso a datos de clientes de Depofibra.
 >
-> El enlace GitHub Pages funcionará cuando se active la publicación en **Settings → Pages → Build and deployment → Source: GitHub Actions**. Si cambias el nombre del repositorio, la ruta de la demo cambiará en consecuencia.
+> El enlace GitHub Pages funcionará cuando se active la publicación en **Settings → Pages → Build and deployment → Source: GitHub Actions**. El repositorio ya utiliza el nombre `depofibra-manager-business`.
 
 ## El proyecto
 
@@ -113,7 +113,7 @@ El workflow `pages.yml` publica automáticamente la carpeta `docs/` cuando hay c
 3. Ejecuta o vuelve a ejecutar **Deploy interactive demo to GitHub Pages** desde **Actions**.
 4. Confirma la URL publicada en la sección de despliegues de GitHub.
 
-**Nombre recomendado del repositorio:** `depofibra-business-manager`. El enlace pasará a ser `https://juanjogamero.github.io/depofibra-business-manager/` cuando se complete el cambio de nombre y se publique correctamente.
+**Nombre recomendado del repositorio:** `depofibra-manager-business`. El enlace pasará a ser `https://juanjogamero.github.io/depofibra-manager-business/` cuando se complete el cambio de nombre y se publique correctamente.
 
 ## Seguridad y alcance
 
