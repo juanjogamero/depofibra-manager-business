@@ -1,30 +1,69 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:depofibra/main.dart';
+import 'package:depofibra/models/cliente.dart';
+import 'package:depofibra/models/producto.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('Cliente', () {
+    test('serializes business fields without document ID', () {
+      final cliente = Cliente(
+        id: 'cliente-1',
+        nombre: 'Cliente de prueba',
+        email: 'cliente@example.com',
+        telefono: '600000000',
+      );
+      expect(cliente.toMap(), {
+        'nombre': 'Cliente de prueba',
+        'email': 'cliente@example.com',
+        'telefono': '600000000',
+      });
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    test('deserializes a Firestore document and preserves ID', () {
+      final cliente = Cliente.fromMap({
+        'nombre': 'Cliente',
+        'email': 'contacto@example.com',
+        'telefono': '611111111',
+      }, 'doc-1');
+      expect(cliente.id, 'doc-1');
+      expect(cliente.nombre, 'Cliente');
+      expect(cliente.email, 'contacto@example.com');
+    });
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  group('Producto', () {
+    test('serializes product details', () {
+      final producto = Producto(
+        nombre: 'Depósito 5000 L',
+        tipo: 'deposito',
+        capacidad: 5000,
+        precio: 800,
+      );
+      expect(producto.toMap(), {
+        'nombre': 'Depósito 5000 L',
+        'tipo': 'deposito',
+        'capacidad': 5000.0,
+        'precio': 800.0,
+      });
+    });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    test('converts integer numeric fields to doubles', () {
+      final producto = Producto.fromMap({
+        'nombre': 'Piscina',
+        'tipo': 'piscina',
+        'capacidad': 12000,
+        'precio': 4000,
+      }, 'prod-1');
+      expect(producto.id, 'prod-1');
+      expect(producto.capacidad, 12000.0);
+      expect(producto.precio, 4000.0);
+    });
+
+    test('provides sensible defaults for missing fields', () {
+      final producto = Producto.fromMap({}, 'empty');
+      expect(producto.nombre, '');
+      expect(producto.tipo, 'deposito');
+      expect(producto.capacidad, 0.0);
+      expect(producto.precio, 0.0);
+    });
   });
 }
